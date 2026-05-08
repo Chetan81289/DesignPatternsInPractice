@@ -26,10 +26,6 @@ final class AppDIContainer: ObservableObject {
     // Override them using the test container in unit tests.
 }
 
-// MARK: - Service Protocols (Placeholders)
-protocol PaymentServiceProtocol {
-    func process(amount: Double, method: PaymentMethod) async throws -> String
-}
 class PaymentService: PaymentServiceProtocol {
     func process(amount: Double, method: PaymentMethod) async throws -> String {
         try await Task.sleep(nanoseconds: 1_000_000_000)
@@ -37,15 +33,19 @@ class PaymentService: PaymentServiceProtocol {
     }
 }
 
-protocol CartServiceProtocol {
-    func fetchCart() async -> Cart
-}
 class CartService: CartServiceProtocol {
     func fetchCart() async -> Cart {
-        Cart(items: ["Pizza"])
+        Cart(items: [
+            CartItem(name: "Pizza Supreme", price: 12.99),
+            CartItem(name: "Garlic Bread", price: 4.99)
+        ])
     }
 }
 
-enum PaymentMethod: String { case applePay, creditCard }
-struct Cart { let items: [String]; var total: Double { Double(items.count) * 12.0 } }
+
+
+
+
+//enum PaymentMethod: String { case applePay, creditCard }
+//struct Cart { let items: [String]; var total: Double { Double(items.count) * 12.0 } }
 

@@ -5,24 +5,54 @@
 //  Created by Chetan purohit on 08/05/26.
 //
 
-import SwiftUI
-import Combine
 
-struct AppTheme {
-    var primaryColor: Color = .orange
-    var backgroundColor: Color = Color(.systemGroupedBackground)
-    var font: Font = .body
+import Combine
+import SwiftUI
+
+// MARK: - App Theme Model
+
+struct AppTheme: Equatable {
+    var primaryColor: Color
+    var backgroundColor: Color
+    var textColor: Color
+    var font: Font
+
+    static let light = AppTheme(
+        primaryColor: .orange,
+        backgroundColor: Color(.systemGroupedBackground),
+        textColor: .primary,
+        font: .body
+    )
+
+    static let dark = AppTheme(
+        primaryColor: .orange,
+        backgroundColor: Color(red: 28/255, green: 28/255, blue: 30/255),  // #1C1C1E
+        textColor: .black,
+        font: .body
+    )
 }
+
+// MARK: - Theme Manager (Singleton)
 
 final class ThemeManager: ObservableObject {
+    /// Shared instance – the Singleton.
     static let shared = ThemeManager()
-    private init() {}
-    @Published var currentTheme = AppTheme()
+
+    @Published var currentTheme: AppTheme = .light
+
+    private init() {}  // Prevent external instantiation
+
+    func toggleTheme() {
+        withAnimation(.easeInOut(duration: 0.3)) {
+            currentTheme = (currentTheme == .light) ? .dark : .light
+        }
+    }
 }
 
-// SwiftUI environment key for theme
+// MARK: - SwiftUI Environment Key
+
 struct ThemeKey: EnvironmentKey {
-    static let defaultValue: AppTheme = AppTheme()
+    static let defaultValue: AppTheme = .light
 }
 
 extension EnvironmentValues {

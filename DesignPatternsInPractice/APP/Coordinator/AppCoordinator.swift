@@ -45,7 +45,7 @@ struct AppCoordinator: View {
         case .drawingBoard:
             DrawingBoardScreen()
         case .supportTickets:
-            SupportTicketsScreen()
+            SupportScreen()
         case .settings:
             SettingsScreen()
         case .productDetail(let id):
@@ -66,20 +66,6 @@ final class NavigationManager: ObservableObject {
 }
 
 // Dummy screens for the ones we haven't built yet
-struct ProductListScreen: View { var body: some View { Text("Product List Screen") } }
+
 struct ProductDetailScreen: View { let productId: String; var body: some View { Text("Product: \(productId)") } }
 struct OrderConfirmationScreen: View { let orderId: String; var body: some View { Text("Order: \(orderId)") } }
-struct DrawingBoardScreen: View { var body: some View { Text("Drawing Board Screen") } }
-struct SupportTicketsScreen: View { var body: some View { Text("Support Tickets Screen") } }
-struct SettingsScreen: View {
-    // Will use ThemeManager singleton later
-    var body: some View { Text("Settings") }
-}
-
-struct PhotoEnhancerScreen: View {
-    var body: some View { Text("PhotoEnhancerScreen") }
-}
-struct CheckoutScreen: View {
-    var body: some View { Text("CheckoutScreen") }
-}
-
