@@ -8,10 +8,7 @@
   <img src="https://img.shields.io/badge/Patterns-9%2B-ff69b4" alt="Patterns">
 </p>
 
-A **production‑grade iOS app** that demonstrates essential design patterns through **real‑world, interactive scenarios** – not abstract toy examples.  
 Every screen is a standalone module with polished SwiftUI UI, animations, and clear separation of concerns. Built to show that you understand *why* and *when* to use a pattern, not just *what* it is.
-
-> Perfect for freelancers who want to prove their architectural skills with code clients can actually run and understand.
 
 ---
 
